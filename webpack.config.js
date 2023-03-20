@@ -8,6 +8,18 @@ module.exports = {
     filename: 'bundle.main.js',
     clean: true,
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          babelrc: true,
+        }
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin(
       {
