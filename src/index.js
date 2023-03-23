@@ -1,3 +1,6 @@
+import dogs from "assets/dogs"
+import './index.scss'
+
 console.log('Hello!')
 
 class myDog {
@@ -14,4 +17,26 @@ const app = document.querySelector('#root')
 const headerOne = document.createElement('h1')
 headerOne.textContent = 'Header One'
 
-app.append(headerOne, paragraph)
+const unorderedList = document.createElement('ul')
+
+unorderedList.className = 'dogs-container'
+
+dogs.forEach(({name, image}) => {
+  const listItem = document.createElement('li')
+  const listDiv = document.createElement('div')
+  const imageBlock = document.createElement('img')
+
+  listItem.className = 'dogs-container-item'
+  listDiv.className = 'dogs-container-item__name'
+  imageBlock.className = 'dogs-container-item__image'
+
+  listDiv.textContent = name
+  imageBlock.src = image
+
+  listItem.appendChild(listDiv)
+  listItem.appendChild(imageBlock)
+
+  unorderedList.appendChild(listItem)
+})
+
+app.append(headerOne, paragraph, unorderedList)

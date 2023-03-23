@@ -8,6 +8,17 @@ module.exports = {
     filename: 'bundle.main.js',
     clean: true,
   },
+  resolve: {
+    alias: {
+      assets: path.resolve(__dirname, './src/assets'),
+      extensions: ['.js'],
+    },
+  },
+  devServer: {
+    port: '3000',
+    static: path.resolve(__dirname, 'src'),
+    host: '0.0.0.0',
+  },
   module: {
     rules: [
       {
@@ -17,7 +28,15 @@ module.exports = {
         options: {
           babelrc: true,
         }
-      }
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.jpe?g$/,
+        type: 'asset/resource',
+      },
     ]
   },
   plugins: [
